@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>颜色选择</title>
+</head>
+<body>
+    <input type="text" value="改变字体颜色" id="inputcolor"/>
+    <div id="colors"></div>
+</body>   
+<script>
+    var colorInput = document.getElementById("inputcolor");
+    var colorS = document.getElementById("colors");
+    var ColorList1 = ['00','33','66','99','CC','FF'];
+    var ColorList2 = ['FF0000','00FF00','0000FF','FFFF00','00FFFF','FF00FF'];
+    window.onload=function(){
+        var colorTable='';
+        for (i=0;i<2;i++){
+            for (j=0;j<6;j++){
+                colorTable=colorTable+'<tr height=15>';
+                if (i==0){
+                    colorTable=colorTable+'<td width="15" onclick=changeColor("#'+ColorList1[j]+ColorList1[j]+ColorList1[j]+'") style="cursor:pointer;background:#'+ColorList1[j]+ColorList1[j]+ColorList1[j]+'">';
+                }else{
+                    colorTable=colorTable+'<td width="15" onclick=changeColor("#'+ColorList2[j]+'") style="cursor:pointer;background:#'+ColorList2[j]+'">';
+                }
+                for (k=0;k<3;k++){ 
+                    for (l=0;l<6;l++){ 
+                        colorTable=colorTable+'<td width="15" onclick=changeColor("#'+ColorList1[k+i*3]+ColorList1[l]+ColorList1[j]+'") style="cursor:pointer;background:#'+ColorList1[k+i*3]+ColorList1[l]+ColorList1[j]+'">';
+                    }
+                }
+            }
+        }
+        colorTable='<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse" bordercolor="000000" style="cursor:pointer;">'+colorTable+'</table>';
+        colorS.innerHTML=colorTable;
+    }
+    function changeColor(obj){
+        colorInput.style.color = obj
+    }
+</script>
+</html>
